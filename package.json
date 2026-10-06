@@ -1,6 +1,6 @@
 {
   "name": "@atul-shaw/ship-check",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pre-launch checklist runner for vibe-coded MERN apps",
   "type": "module",
   "bin": {
@@ -43,6 +43,14 @@
     "cli"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atul8108/check-list-tool.git"
+  },
+  "homepage": "https://github.com/Atul8108/check-list-tool#readme",
+  "bugs": {
+    "url": "https://github.com/Atul8108/check-list-tool/issues"
+  },
   "devDependencies": {
     "@types/node": "^26.6.4",
     "tsup": "^8.5.1",
