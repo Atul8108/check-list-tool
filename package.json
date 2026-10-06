@@ -1,0 +1,44 @@
+{
+  "name": "ship-check",
+  "version": "0.0.0",
+  "description": "Pre-launch checklist runner for vibe-coded MERN apps",
+  "type": "module",
+  "bin": {
+    "ship-check": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "keywords": [
+    "security",
+    "checklist",
+    "mern",
+    "vibe-coding",
+    "cli"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9",
+    "vitest": "^5.0.3"
+  }
+}
