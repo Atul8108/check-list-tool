@@ -25,9 +25,10 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "prepublishOnly": "npm run typecheck && npm test",
     "prepack": "npm run build",
-    "scan": "node scripts/scan-repos.mjs"
+    "scan": "node scripts/scan-repos.mjs",
+    "publish:github": "node scripts/publish-github.mjs"
   },
   "keywords": [
     "security",
