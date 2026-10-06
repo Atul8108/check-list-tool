@@ -1,6 +1,6 @@
 {
   "name": "ship-check",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Pre-launch checklist runner for vibe-coded MERN apps",
   "type": "module",
   "bin": {
