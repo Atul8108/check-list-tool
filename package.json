@@ -1,6 +1,6 @@
 {
   "name": "@atul-shaw/ship-check",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Pre-launch checklist runner for vibe-coded MERN apps",
   "type": "module",
   "bin": {
@@ -27,6 +27,7 @@
     "test": "vitest run",
     "prepublishOnly": "npm run typecheck && npm test",
     "prepack": "npm run build",
+    "find-repos": "node scripts/find-repos.mjs",
     "scan": "node scripts/scan-repos.mjs",
     "publish:github": "node scripts/publish-github.mjs"
   },

@@ -2,7 +2,7 @@ import type { Check, Finding } from "../core/types.js";
 
 const ROUTE = /\b(?:app|router)\.(get|post|put|patch|delete)\(\s*["'`]([^"'`]+)["'`]\s*,(.*)/;
 const AUTHISH = /auth|protect|verify|jwt|session|passport|requireUser|isLoggedIn|guard/i;
-const PUBLIC_PATH = /login|register|signup|health|webhook|public|^\/$/i;
+const PUBLIC_PATH = /login|signin|logout|register|signup|forgot|reset|refresh|oauth|callback|health|webhook|public|^\/$/i;
 
 // ponytail: line-based heuristic, misses multi-line route definitions; "review" only, never "fail".
 export const authRoutes: Check = {

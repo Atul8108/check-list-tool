@@ -62,6 +62,11 @@ Use it in CI:
 | `rate-limit` | fail | An Express app with no rate-limiting package anywhere in the project. |
 | `auth-routes` | review | Express routes with no visible auth middleware. Login, register, health and webhook routes are skipped. |
 | `webhook-signature` | fail / review | Stripe or Razorpay webhook handlers that never verify the signature, and empty `catch` blocks in payment code. |
+| `helmet` | review | An Express app where `helmet` is never imported. |
+| `cors` | fail / review | `cors()` with `origin: "*"` or `origin: true`: fail with `credentials: true`, review otherwise or with no options. |
+| `jwt-secret` | fail | `jwt.sign` / `jwt.verify` with a string-literal secret, or `process.env.X \|\| "literal"` fallbacks. |
+| `mongoose-ownership` | review | `findById*(req.params...)` / `findOne({ _id: req.params... })` with no owner hint nearby. |
+| `nosql-injection` | review | `req.body` / `req.query` passed directly into `find`, `findOne`, `updateOne`, `deleteOne` and similar. |
 | `file-size` | info | Files over 500 lines. |
 
 Scanned: `.js`, `.jsx`, `.ts`, `.tsx`, `.mjs`, `.cjs`, `.json` and `.env*` files. Ignored: `node_modules`, `.git`, `dist`, `build`, `coverage`, `.next`.
@@ -70,6 +75,11 @@ Scanned: `.js`, `.jsx`, `.ts`, `.tsx`, `.mjs`, `.cjs`, `.json` and `.env*` files
 
 - `rate-limit` detects that no limiter exists, not whether it covers the right routes.
 - `auth-routes` is a line-based heuristic and misses routes defined across several lines. It only ever reports `review`.
+- `helmet` only checks that it is imported, not that it is mounted before your routes.
+- `cors` only sees literal wildcards, not an origin function that returns `true` or a config held in a variable.
+- `jwt-secret` does not judge weak values loaded from `.env` or assigned to a variable first.
+- `mongoose-ownership` is a prompt to check, never proof: ownership bugs (IDOR) cannot be reliably found statically. It only sees `req.params` ids passed straight into the lookup.
+- `nosql-injection` only flags the direct `find(req.body)` form, not field access like `{ email: req.body.email }`.
 - `webhook-signature` does not check idempotency or subscription-state handling.
 
 ## Programmatic API
@@ -82,6 +92,18 @@ const findings = await runChecks("./my-app");
 ```
 
 Exports: `runChecks`, `allChecks`, and the types `Check`, `Finding`, `Project`, `Reporter`, `Severity`.
+
+## Running a study
+
+```sh
+npm run build
+npm run find-repos -- --limit 100      # writes repos.txt (try --dry-run first; edit QUERIES in scripts/find-repos.mjs)
+npm run scan -- repos.txt              # writes scan-results/results.json and summary.json
+```
+
+Set `GITHUB_TOKEN` to raise the GitHub search rate limit (unauthenticated is about 10 requests a minute). Repos without Express in a `package.json` are reported as `skipped` and excluded from the percentages.
+
+Results are heuristic: the discovery queries only find repos that mention AI builders, which is not proof they were AI-generated, and the checks are static analysis. Publish aggregated numbers (`summary.json`), not individual repos.
 
 ## Contributing
 
