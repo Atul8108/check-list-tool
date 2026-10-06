@@ -25,13 +25,20 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build"
   },
   "keywords": [
     "security",
     "checklist",
+    "pre-launch",
     "mern",
+    "express",
+    "mongoose",
+    "stripe",
+    "razorpay",
     "vibe-coding",
+    "static-analysis",
     "cli"
   ],
   "license": "MIT",
@@ -40,5 +47,7 @@
     "tsup": "^8.5.1",
     "typescript": "~5.9",
     "vitest": "^5.0.3"
-  }
+  },
+  "author": "Atul Shaw",
+  "sideEffects": false
 }
