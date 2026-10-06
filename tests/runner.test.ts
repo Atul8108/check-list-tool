@@ -27,3 +27,7 @@ test("flags unsigned webhook and empty catch", async () => {
 test("clean project has no findings", async () => {
   expect(await scan("clean")).toEqual([]);
 });
+
+test("ignores placeholder secrets in .env.example", async () => {
+  expect(await scan("env-example")).toEqual([]);
+});

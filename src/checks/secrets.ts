@@ -8,12 +8,16 @@ const PATTERNS: [name: string, re: RegExp][] = [
   ["Secret in NEXT_PUBLIC_/VITE_ var", /(?:NEXT_PUBLIC|VITE|REACT_APP)_\w*(?:SECRET|PRIVATE|SERVICE_ROLE)\w*/],
 ];
 
+// Template env files hold placeholders, not real secrets.
+const TEMPLATE_ENV = /\.env\.(?:example|sample|template|dist)$/;
+
 export const secrets: Check = {
   id: "secrets",
   title: "Hardcoded secrets",
   async run(project) {
     const findings: Finding[] = [];
     for (const file of project.files) {
+      if (TEMPLATE_ENV.test(file)) continue;
       const lines = (await project.read(file)).split("\n");
       lines.forEach((text, i) => {
         for (const [name, re] of PATTERNS)
