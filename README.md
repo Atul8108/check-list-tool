@@ -1,7 +1,7 @@
 # ship-check
 
 [![npm version](https://img.shields.io/npm/v/@atul-shaw/ship-check.svg)](https://www.npmjs.com/package/@atul-shaw/ship-check)
-[![license](https://img.shields.io/npm/l/@atul-shaw/ship-check.svg)](LICENSE)
+[![license](https://img.shields.io/npm/l/@atul-shaw/ship-check?label=license)](LICENSE)
 [![node](https://img.shields.io/node/v/@atul-shaw/ship-check.svg)](package.json)
 
 A pre-launch checklist runner for AI-generated ("vibe-coded") MERN apps. It scans your source for the mistakes AI tools ship most often: hardcoded secrets, no rate limiting, unprotected routes and unsigned payment webhooks.
