@@ -1,8 +1,8 @@
 # ship-check
 
-[![npm version](https://img.shields.io/npm/v/ship-check.svg)](https://www.npmjs.com/package/ship-check)
-[![license](https://img.shields.io/npm/l/ship-check.svg)](LICENSE)
-[![node](https://img.shields.io/node/v/ship-check.svg)](package.json)
+[![npm version](https://img.shields.io/npm/v/@atul-shaw/ship-check.svg)](https://www.npmjs.com/package/@atul-shaw/ship-check)
+[![license](https://img.shields.io/npm/l/@atul-shaw/ship-check.svg)](LICENSE)
+[![node](https://img.shields.io/node/v/@atul-shaw/ship-check.svg)](package.json)
 
 A pre-launch checklist runner for AI-generated ("vibe-coded") MERN apps. It scans your source for the mistakes AI tools ship most often: hardcoded secrets, no rate limiting, unprotected routes and unsigned payment webhooks.
 
@@ -11,13 +11,13 @@ A pre-launch checklist runner for AI-generated ("vibe-coded") MERN apps. It scan
 ## Install
 
 ```sh
-npm install --save-dev ship-check
+npm install --save-dev @atul-shaw/ship-check
 ```
 
 Or run it without installing:
 
 ```sh
-npx ship-check
+npx @atul-shaw/ship-check
 ```
 
 Requires Node.js 20 or later.
@@ -25,7 +25,7 @@ Requires Node.js 20 or later.
 ## Usage
 
 ```sh
-npx ship-check [path] [--json]
+npx @atul-shaw/ship-check [path] [--json]
 ```
 
 | Argument | Description |
@@ -51,7 +51,7 @@ Example output:
 Use it in CI:
 
 ```yaml
-- run: npx ship-check
+- run: npx @atul-shaw/ship-check
 ```
 
 ## Checks
@@ -75,7 +75,7 @@ Scanned: `.js`, `.jsx`, `.ts`, `.tsx`, `.mjs`, `.cjs`, `.json` and `.env*` files
 ## Programmatic API
 
 ```js
-import { runChecks } from "ship-check";
+import { runChecks } from "@atul-shaw/ship-check";
 
 const findings = await runChecks("./my-app");
 // [{ checkId, severity: "fail" | "review" | "info", message, file?, line? }]

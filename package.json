@@ -1,5 +1,5 @@
 {
-  "name": "ship-check",
+  "name": "@atul-shaw/ship-check",
   "version": "0.1.0",
   "description": "Pre-launch checklist runner for vibe-coded MERN apps",
   "type": "module",
@@ -49,5 +49,8 @@
     "vitest": "^5.0.3"
   },
   "author": "Atul Shaw",
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
 }
